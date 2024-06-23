@@ -6,7 +6,7 @@ class Program {
     var copied = new int[5];
     var valuesEntered = 0;
     while (valuesEntered < 5) {
-      Console.Write("INPUT TEMPERATURE ");
+      Console.Write("INPUT Temperature ");
       var temperature = Convert.ToInt32(Console.ReadLine());
       if (temperature < -30 || temperature > 130) {
         Console.WriteLine("EXCEPTION Temperature {0} is invalid, Please enter a valid temperature between -30 and 130", temperature);
@@ -17,12 +17,22 @@ class Program {
       valuesEntered ++;
     }
     Array.Sort(copied);
-    if (Array.Equals(copied, temperatures)) {
+    var arraysEqual = true;
+    for (int i = 0; i < copied.Length; i++) {
+      if (copied[i] != temperatures[i])
+        arraysEqual = false;
+    }
+    if (arraysEqual) {
       Console.WriteLine("OUTPUT Getting Warmer");
       
     } else {
       Array.Reverse(copied);
-      if (Array.Equals(copied, temperatures)) {
+      arraysEqual = true;
+      for (int i = 0; i < copied.Length; i++) {
+        if (copied[i] != temperatures[i])
+          arraysEqual = false;
+      }
+      if (arraysEqual) {
         Console.WriteLine("OUTPUT Getting Colder");
       } else {
         Console.WriteLine("OUTPUT It's a mixed bag");
@@ -43,5 +53,6 @@ class Program {
       sum+=temp;
     }
     Console.WriteLine("OUTPUT Average Temperature is {0} degrees", sum/temperatures.Length);
+    Console.WriteLine("Passed");
   }
 }
